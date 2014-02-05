@@ -10,7 +10,7 @@ snapshot from 2014-02-03 with no packages installed except those listed below
 and their dependencies that are automatically pulled in by pkg_add.  This has
 NOT been tested on i386.
 
-<h4>Intro</h4>
+####Intro
 
 I have been trying to get Minecraft working on OpenBSD for quite some time.  My
 kids and I enjoy playing the game together and so I wanted it to work on my
@@ -34,7 +34,7 @@ Minecraft running natively on OpenBSD.  This assumes you have a working OpenBSD
 system, you've configured your $PKG_PATH to pull packages from the mirrors, and
 you've got a copy of the Minecraft.jar file.
 
-<h4>Preliminary step</h4>
+####Preliminary step
 
 First, a preliminary step common to running java apps on OpenBSD -- the ulimit
 datasize.  I won't go into detail here (just Google it for more information)
@@ -43,37 +43,37 @@ then you might need to edit /etc/login.conf and change the 'staff' datasize-cur
 to 1024M or 2048M, otherwise the Minecraft.jar file won't run.  See man
 login.conf.
 
-<h4>Warning</h4>
+####Warning
 
 STUPID SYMLINK HACK LIES AHEAD IN STEP 8. I know, I know.  I am not smart
 enough to figure out another way to get Minecraft.jar to find the libGL in
 /usr/X11R6/lib so if you have a better way, please let me know so I can get rid
 of the symlink. 
 
-<h4>The 10 easy steps</h4>
+####The 10 easy steps
 
-1. As root, install these necessary packages:
+Step 1. As root, install these necessary packages:
 
    * audio/openal (for the game)
    * devel/jdk-1.7.0 (to build lwjgl and for the game)
    * java/apache-ant (to build lwjgl)
 
-2. As your regular user, add /usr/local/jdk-1.7.0/bin to your $PATH if you
+Step 2. As your regular user, add /usr/local/jdk-1.7.0/bin to your $PATH if you
 haven't already done so in your $HOME/.profile or similar.  This is needed to
 pull in the java and apache-ant binaries (e.g. apt) to build lwjgl and also
 makes it easier to launch Minecraft.jar since 'java' will be in your $PATH.
 
-[code]
+```
     $ export PATH=${PATH}:/usr/local/jdk-1.7.0/bin
-[/code]
+```
 
-3. Create a workdir and cd into it.
+Step 3. Create a workdir and cd into it.
 
 ```
     $ mkdir $HOME/workdir ; cd $HOME/workdir
 ```
 
-4. Download the lwjgl2.9.1.tar.gz source from Github and save it to the
+Step 4. Download the lwjgl2.9.1.tar.gz source from Github and save it to the
 workdir you created in Step 3 and then extract the tarball:
 
 ```
@@ -82,7 +82,7 @@ workdir you created in Step 3 and then extract the tarball:
     $ cd lwjgl-lwjgl2.9.1
 ```
 
-5. Grab the two patches found here in this git repo that will help us build
+Step 5. Grab the two patches found here in this git repo that will help us build
 lwjgl natively on OpenBSD and then apply them to build.xml and
 platform_build/bsd_ant/build.xml.
 
@@ -93,7 +93,7 @@ platform_build/bsd_ant/build.xml.
     $ patch platform_build/bsd_ant/build.xml < patch-platform_build_bsd_ant_build_xml
 ```
 
-6. Build lwjgl.
+Step 6. Build lwjgl.
 
 ```
     $ ant
@@ -106,19 +106,20 @@ The resulting libraries are:
     * libs/lwjgl_util.jar
     * libs/openbsd/liblwjgl64.so
 
-7. Grab the script called 'native-lwjgl.sh' from the git repo here and save it
-somewhere in your user's $HOME and make it executable.
+Step 7. Grab the script called 'native-lwjgl.sh' from the git repo here and
+save it somewhere in your user's $HOME and make it executable.
 
 ```
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/native-lwjgl.sh
     $ chmod +x native-lwjgl.sh
 ```
 
-8. STUPID HACK - link /usr/X11R6/lib/libGL.so.15.0 to /usr/local/lib/libGL.so.1
-because otherwise the game won't run.  I tried adding the path /usr/X11R6/lib
-to the -Djava.library.path variable in the native-lwjgl.sh script but it does
-not seem to work.  Please let me know if you know how to properly address this
-issue so I can get rid of this stupid symlink.
+Step 8. STUPID HACK - link /usr/X11R6/lib/libGL.so.15.0 to
+/usr/local/lib/libGL.so.1 because otherwise the game won't run.  I tried adding
+the path /usr/X11R6/lib to the -Djava.library.path variable in the
+native-lwjgl.sh script but it does not seem to work.  Please let me know if you
+know how to properly address this issue so I can get rid of this stupid
+symlink.
 
 ```
     (su to root or use sudo)
@@ -126,7 +127,7 @@ issue so I can get rid of this stupid symlink.
     (change back to regular user)
 ```
 
-9. Launch the Minecraft.jar
+Step 9. Launch the Minecraft.jar
 
 ```
     $ java -jar Minecraft.jar
@@ -137,7 +138,7 @@ libraries etc., click "Edit Profile" and click the box labeled "Executable".
 Enter the path to the 'native-lwjgl.sh' script from Step 7.  Then click "Save
 Profile" and then "Play."
 
-10.  Enjoy playing Minecraft on OpenBSD.
+Step 10.  Enjoy playing Minecraft on OpenBSD.
 
 Attributions:
 [1] http://devnull.sig11.fr/minecraft/HOWTO_MINECRAFT_ON_FREEBSD.txt
