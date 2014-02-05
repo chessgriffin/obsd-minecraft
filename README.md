@@ -63,13 +63,15 @@ haven't already done so in your $HOME/.profile or similar.  This is needed to
 pull in the java and apache-ant binaries (e.g. apt) to build lwjgl and also
 makes it easier to launch Minecraft.jar since 'java' will be in your $PATH.
 
-...
+```
     $ export PATH=${PATH}:/usr/local/jdk-1.7.0/bin
-...
+```
 
 3. Create a workdir and cd into it.
 
+```
     $ mkdir $HOME/workdir ; cd $HOME/workdir
+```
 
 4. Download the lwjgl2.9.1.tar.gz source from Github and save it to the
 workdir you created in Step 3 and then extract the tarball:
