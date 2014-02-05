@@ -76,35 +76,43 @@ makes it easier to launch Minecraft.jar since 'java' will be in your $PATH.
 4. Download the lwjgl2.9.1.tar.gz source from Github and save it to the
 workdir you created in Step 3 and then extract the tarball:
 
+```
     $ ftp https://github.com/LWJGL/lwjgl/archive/lwjgl2.9.1.tar.gz
     $ tar -zxvf lwjgl2.9.1.tar.gz
     $ cd lwjgl-lwjgl2.9.1
+```
 
 5. Grab the two patches found here in this git repo that will help us build
 lwjgl natively on OpenBSD and then apply them to build.xml and
 platform_build/bsd_ant/build.xml.
 
+```
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/patch-build_xml
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/patch-platform_build_bsd_ant_build_xml
     $ patch build.xml < patch-build_xml
     $ patch platform_build/bsd_ant/build.xml < patch-platform_build_bsd_ant_build_xml
+```
 
 6. Build lwjgl.
 
+```
     $ ant
+```
 
 The compile should take less than three minutes on a reasonably modern machine.
 The resulting libraries are:
 
-    libs/lwjgl.jar
-    libs/lwjgl_util.jar
-    libs/openbsd/liblwjgl64.so
+    * libs/lwjgl.jar
+    * libs/lwjgl_util.jar
+    * libs/openbsd/liblwjgl64.so
 
 7. Grab the script called 'native-lwjgl.sh' from the git repo here and save it
 somewhere in your user's $HOME and make it executable.
 
+```
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/native-lwjgl.sh
     $ chmod +x native-lwjgl.sh
+```
 
 8. STUPID HACK - link /usr/X11R6/lib/libGL.so.15.0 to /usr/local/lib/libGL.so.1
 because otherwise the game won't run.  I tried adding the path /usr/X11R6/lib
@@ -112,13 +120,17 @@ to the -Djava.library.path variable in the native-lwjgl.sh script but it does
 not seem to work.  Please let me know if you know how to properly address this
 issue so I can get rid of this stupid symlink.
 
+```
     (su to root or use sudo)
     # ln -sf /usr/X11R6/lib/libGL.so.15.0 /usr/local/lib/libGL.so.1
     (change back to regular user)
+```
 
 9. Launch the Minecraft.jar
 
+```
     $ java -jar Minecraft.jar
+```
 
 Once you've logged in and the game downloads all the textures, sounds,
 libraries etc., click "Edit Profile" and click the box labeled "Executable".
