@@ -14,7 +14,7 @@ NOT been tested on i386.
 
 I have been trying to get Minecraft working on OpenBSD for quite some time.  My
 kids and I enjoy playing the game together and so I wanted it to work on my
-OpenBSD laptop.  In order to do, however, I needed to build the Lightweight
+OpenBSD laptop.  In order to do so, however, I needed to build the Lightweight
 Java Game Library (http://lwjgl.org) run-time dependency natively on the
 system.  It appeared that lwjgl required two other libraries in order to build:
 jinput and jutils.  I found a guide written for FreeBSD [1] that got me started
@@ -115,6 +115,12 @@ save it somewhere in your user's $HOME and make it executable.
     $ chmod +x native-lwjgl.sh
 ```
 
+Check the variables at the top of the script to see if you need to change
+anything.  Basically, they are simply pointing to the directory where you built
+lwjgl in your $HOME directory.  If you used the 'workdir' name suggested in
+Step 3, then you probably don't need to edit the script at all but check it out
+just in case.
+
 Step 8. STUPID HACK - link /usr/X11R6/lib/libGL.so.15.0 to
 /usr/lib/libGL.so.1 because otherwise the game won't run.  I tried adding
 the path /usr/X11R6/lib to the -Djava.library.path variable in the
@@ -145,5 +151,7 @@ Please let me know if this works or doesn't work or if you have any suggestions
 on how to improve this writeup.  Thank you!
 
 Attributions:
+
 [1] http://devnull.sig11.fr/minecraft/HOWTO_MINECRAFT_ON_FREEBSD.txt
+
 [2] http://forums.freebsd.org/viewtopic.php?f=5&t=42932
