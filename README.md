@@ -10,7 +10,7 @@ snapshot from 2014-02-03 with no packages installed except those listed below
 and their dependencies that are automatically pulled in by pkg_add.  This has
 NOT been tested on i386.
 
-## Intro
+#### Intro
 
 I have been trying to get Minecraft working on OpenBSD for quite some time.  My
 kids and I enjoy playing the game together and so I wanted it to work on my
@@ -34,7 +34,7 @@ Minecraft running natively on OpenBSD.  This assumes you have a working OpenBSD
 system, you've configured your $PKG_PATH to pull packages from the mirrors, and
 you've got a copy of the Minecraft.jar file.
 
-## Preliminary step
+#### Preliminary step
 
 First, a preliminary step common to running java apps on OpenBSD -- the ulimit
 datasize.  I won't go into detail here (just Google it for more information)
@@ -43,27 +43,29 @@ then you might need to edit /etc/login.conf and change the 'staff' datasize-cur
 to 1024M or 2048M, otherwise the Minecraft.jar file won't run.  See man
 login.conf.
 
-## Warning
+#### Warning
 
 STUPID SYMLINK HACK LIES AHEAD IN STEP 8. I know, I know.  I am not smart
 enough to figure out another way to get Minecraft.jar to find the libGL in
 /usr/X11R6/lib so if you have a better way, please let me know so I can get rid
 of the symlink. 
 
-## The 10 easy steps
+#### The 10 easy steps
 
 1. As root, install these necessary packages:
 
-audio/openal (for the game)
-devel/jdk-1.7.0 (to build lwjgl and for the game)
-java/apache-ant (to build lwjgl)
+   * audio/openal (for the game)
+   * devel/jdk-1.7.0 (to build lwjgl and for the game)
+   * java/apache-ant (to build lwjgl)
 
 2. As your regular user, add /usr/local/jdk-1.7.0/bin to your $PATH if you
 haven't already done so in your $HOME/.profile or similar.  This is needed to
 pull in the java and apache-ant binaries (e.g. apt) to build lwjgl and also
 makes it easier to launch Minecraft.jar since 'java' will be in your $PATH.
 
+...
     $ export PATH=${PATH}:/usr/local/jdk-1.7.0/bin
+...
 
 3. Create a workdir and cd into it.
 
