@@ -48,7 +48,8 @@ login.conf.
 STUPID SYMLINK HACK LIES AHEAD IN STEP 8. I know, I know.  I am not smart
 enough to figure out another way to get Minecraft.jar to find the libGL in
 /usr/X11R6/lib so if you have a better way, please let me know so I can get rid
-of the symlink. 
+of the symlink. Try skipping this step to see the error message and maybe you
+can let me know a better way.  Thanks.
 
 ####The 10 easy steps
 
@@ -102,9 +103,9 @@ Step 6. Build lwjgl.
 The compile should take less than three minutes on a reasonably modern machine.
 The resulting libraries are:
 
-    * libs/lwjgl.jar
-    * libs/lwjgl_util.jar
-    * libs/openbsd/liblwjgl64.so
+   * libs/lwjgl.jar
+   * libs/lwjgl_util.jar
+   * libs/openbsd/liblwjgl64.so
 
 Step 7. Grab the script called 'native-lwjgl.sh' from the git repo here and
 save it somewhere in your user's $HOME and make it executable.
@@ -115,7 +116,7 @@ save it somewhere in your user's $HOME and make it executable.
 ```
 
 Step 8. STUPID HACK - link /usr/X11R6/lib/libGL.so.15.0 to
-/usr/local/lib/libGL.so.1 because otherwise the game won't run.  I tried adding
+/usr/lib/libGL.so.1 because otherwise the game won't run.  I tried adding
 the path /usr/X11R6/lib to the -Djava.library.path variable in the
 native-lwjgl.sh script but it does not seem to work.  Please let me know if you
 know how to properly address this issue so I can get rid of this stupid
@@ -123,7 +124,7 @@ symlink.
 
 ```
     (su to root or use sudo)
-    # ln -sf /usr/X11R6/lib/libGL.so.15.0 /usr/local/lib/libGL.so.1
+    # ln -sf /usr/X11R6/lib/libGL.so.15.0 /usr/lib/libGL.so.1
     (change back to regular user)
 ```
 
@@ -139,6 +140,9 @@ Enter the path to the 'native-lwjgl.sh' script from Step 7.  Then click "Save
 Profile" and then "Play."
 
 Step 10.  Enjoy playing Minecraft on OpenBSD.
+
+Please let me know if this works or doesn't work or if you have any suggestions
+on how to improve this writeup.  Thank you!
 
 Attributions:
 [1] http://devnull.sig11.fr/minecraft/HOWTO_MINECRAFT_ON_FREEBSD.txt
