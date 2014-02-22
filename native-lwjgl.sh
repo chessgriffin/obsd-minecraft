@@ -1,5 +1,5 @@
 #!/bin/ksh
-# Lighly modified from a script posted by the user amracks in the
+# Lightly modified from a script posted by the user amracks in the
 # FreeBSD forums at http://forums.freebsd.org/viewtopic.php?f=5&t=42932
 
 WORKDIR="$HOME/workdir/lwjgl-lwjgl2.9.1"

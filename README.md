@@ -3,10 +3,10 @@ obsd-minecraft
 
 Running the Minecraft client natively on OpenBSD.
 
-THIS WRITEUP IS STILL BEING TESTED. YMMV.
+THIS WRITEUP WORKS FOR ME BUT IS STILL BEING TESTED. YMMV.
 
 This write up has been tested on a freshly installed OpenBSD-current amd64
-snapshot from 2014-02-03 with no packages installed except those listed below
+snapshot from 2014-02-21 with no packages installed except those listed below
 and their dependencies that are automatically pulled in by pkg_add.  This has
 NOT been tested on i386.
 
