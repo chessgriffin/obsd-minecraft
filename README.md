@@ -51,6 +51,9 @@ enough to figure out another way to get Minecraft.jar to find the libGL in
 of the symlink. Try skipping this step to see the error message and maybe you
 can let me know a better way.  Thanks.
 
+UPDATE 2014-09-29:  See Issue #1 (https://github.com/chessgriffin/obsd-minecraft/issues/1)
+where dc740 contributed a fix for the stupid symlink.  I'll work up a patch as soon as I can.
+
 ####The 10 easy steps
 
 Step 1. As root, install these necessary packages:
@@ -133,6 +136,8 @@ symlink.
     # ln -sf /usr/X11R6/lib/libGL.so.15.0 /usr/lib/libGL.so.1
     (change back to regular user)
 ```
+
+UPDATE: As mentioned above, see Issue #1 for a fix to the stupid symlink contributed by dc740.
 
 Step 9. Launch the Minecraft.jar
 
