@@ -34,6 +34,8 @@ Minecraft running natively on OpenBSD.  This assumes you have a working OpenBSD
 system, you've configured your $PKG_PATH to pull packages from the mirrors, and
 you've got a copy of the Minecraft.jar file.
 
+UPDATE 2014-09-29: qbit also submitted some patches upstream to LWJGL to get it to build natively on OpenBSD.  I have not tried the patches yet but they look like they should work fine, which might make this writeup unnecessary, especially if they are accepted upstream (hopefully so!).  Check them out here: https://github.com/LWJGL/lwjgl/pull/54
+
 ####Preliminary step
 
 First, a preliminary step common to running java apps on OpenBSD -- the ulimit
