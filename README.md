@@ -89,9 +89,9 @@ workdir you created in Step 3 and then extract the tarball:
     $ cd lwjgl-lwjgl2.9.1
 ```
 
-Step 5. Grab the two patches found here in this git repo that will help us build
-lwjgl natively on OpenBSD and then apply them to build.xml and
-platform_build/bsd_ant/build.xml.
+Step 5. Grab the three patches found here in this git repo that will help us
+buile lwjgl natively on OpenBSD and then apply them to build.xml and
+platform_build/bsd_ant/build.xml and src/native/linux/opengl/extgl_glx.c.
 
 ```
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/patch-build_xml
