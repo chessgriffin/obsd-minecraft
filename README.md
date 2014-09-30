@@ -129,6 +129,16 @@ lwjgl in your $HOME directory.  If you used the 'workdir' name suggested in
 Step 3, then you probably don't need to edit the script at all but check it out
 just in case.
 
+UPDATE 2014-09-30: If you run OpenBSD -current and use qbit's new port or
+package for lwjgl, then you still might need this helper script to get
+Minecraft to run.  Just follow the same directions here in this outline EXCEPT
+you will need to manually adjust the variable paths at the top of the script,
+since the provided script points to the lwjgl built in the user's $WORKDIR
+rather than the libraries built or installed via qbit's port/package.
+Basically, you will need to set WORKDIR to "/usr/local/share" and
+LWJGL_JLP_OVRD to "$WORKDIR/lwjgl" and LWJGL_OVRD to "$WORKDIR/lwjgl/lwjgl.jar"
+and LWJGL_UTIL_OVRD to "$WORKDIR/lwjgl/lwjgl_util.jar".
+
 Step 8. Launch the Minecraft.jar
 
 ```
