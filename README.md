@@ -34,20 +34,28 @@ Minecraft running natively on OpenBSD.  This assumes you have a working OpenBSD
 system, you've configured your $PKG_PATH to pull packages from the mirrors, and
 you've got a copy of the Minecraft.jar file.
 
-UPDATE 2014-09-29: qbit submitted some patches upstream to LWJGL to get it to
-build natively on OpenBSD and the patches were just accepted, which is awesome!
-I have not tried the patches yet but they look like they should work fine.
-Check them out here: https://github.com/LWJGL/lwjgl/pull/54
+UPDATE 2014-09-29: Github user @dc740 opened Issue #1 to discuss some fixes and
+provided a very helpful pointer on how to fix a stupid symbolic link hack that
+I used here.  Then, Github user (and OpenBSD ports committer) @qbit submitted
+some patches upstream to LWJGL to get it to build natively on OpenBSD and the
+patches were just accepted, which is awesome! I have not tried the patches yet
+but they look like they should work fine.  Check them out here:
+https://github.com/LWJGL/lwjgl/pull/54
 
-UPDATE #2 2014-09-29: qbit has now created a port and submitted it to ports@
+UPDATE #2 2014-09-29: @qbit has now created a port and submitted it to ports@
 for review, which is even more awesome.  Thanks @qbit!  Hopefully the port will
 make its way into the OpenBSD ports tree and eventually a package will be
 created which will eliminate the need for most of this writeup.  The only thing
-that might be needed is the startup script, properly tweaked.  I'll test out
-his port and then modify this writeup accordingly.  Link to the submitted port:
+that might be needed is the helper script, properly tweaked.  I'll test out his
+port and then modify this writeup accordingly.  Link to the submitted port:
 http://marc.info/?l=openbsd-ports&m=141202539713097&w=2
 
-UPDATE #3 2014-09-30: qbit's port has been imported to the OpenBSD ports tree.  \o/ - this means this whole writeup will be unnecessary once everyone can use the port or the package.  I will update this README to bring it up to date with the last patch but overall this writeup is now deprecated other than the starter helper script. :-)  Big thanks to dc740 and qbit!
+UPDATE #3 2014-09-30: @qbit's port has been imported to the OpenBSD ports tree.
+\o/ - this means this whole writeup will be unnecessary once everyone can use
+the port or the package.  I will update this README to bring it up to date with
+the last patch but overall this writeup is now deprecated other than the
+starter helper script. :-)  Big thanks to @dc740 and @qbit!
+
 ####Preliminary step
 
 First, a preliminary step common to running java apps on OpenBSD -- the ulimit
