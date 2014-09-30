@@ -34,9 +34,18 @@ Minecraft running natively on OpenBSD.  This assumes you have a working OpenBSD
 system, you've configured your $PKG_PATH to pull packages from the mirrors, and
 you've got a copy of the Minecraft.jar file.
 
-UPDATE 2014-09-29: qbit submitted some patches upstream to LWJGL to get it to build natively on OpenBSD and the patches were just accepted, which is awesome!  I have not tried the patches yet but they look like they should work fine.  Check them out here: https://github.com/LWJGL/lwjgl/pull/54
+UPDATE 2014-09-29: qbit submitted some patches upstream to LWJGL to get it to
+build natively on OpenBSD and the patches were just accepted, which is awesome!
+I have not tried the patches yet but they look like they should work fine.
+Check them out here: https://github.com/LWJGL/lwjgl/pull/54
 
-UPDATE #2 2014-09-29: qbit has now created a port and submitted it to ports@ for review, which is even more awesome.  Thanks @qbit!  Hopefully the port will make its way into the OpenBSD ports tree and eventually a package will be created which will eliminate the need for most of this writeup.  The only thing that might be needed is the startup script, properly tweaked.  I'll test out his port and then modify this writeup accordingly.  Link to the submitted port:  http://marc.info/?l=openbsd-ports&m=141202539713097&w=2
+UPDATE #2 2014-09-29: qbit has now created a port and submitted it to ports@
+for review, which is even more awesome.  Thanks @qbit!  Hopefully the port will
+make its way into the OpenBSD ports tree and eventually a package will be
+created which will eliminate the need for most of this writeup.  The only thing
+that might be needed is the startup script, properly tweaked.  I'll test out
+his port and then modify this writeup accordingly.  Link to the submitted port:
+http://marc.info/?l=openbsd-ports&m=141202539713097&w=2
 
 ####Preliminary step
 
@@ -55,8 +64,10 @@ enough to figure out another way to get Minecraft.jar to find the libGL in
 of the symlink. Try skipping this step to see the error message and maybe you
 can let me know a better way.  Thanks.
 
-UPDATE 2014-09-29:  See Issue #1 (https://github.com/chessgriffin/obsd-minecraft/issues/1)
-where dc740 contributed a fix for the stupid symlink.  I'll work up a patch as soon as I can.
+UPDATE 2014-09-29:  See Issue #1
+(https://github.com/chessgriffin/obsd-minecraft/issues/1) where dc740
+contributed a fix for the stupid symlink.  I'll work up a patch as soon as I
+can.
 
 ####The 10 easy steps
 
@@ -141,7 +152,8 @@ symlink.
     (change back to regular user)
 ```
 
-UPDATE: As mentioned above, see Issue #1 for a fix to the stupid symlink contributed by dc740.
+UPDATE: As mentioned above, see Issue #1 for a fix to the stupid symlink
+contributed by dc740.
 
 Step 9. Launch the Minecraft.jar
 
