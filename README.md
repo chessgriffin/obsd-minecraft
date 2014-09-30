@@ -47,6 +47,7 @@ that might be needed is the startup script, properly tweaked.  I'll test out
 his port and then modify this writeup accordingly.  Link to the submitted port:
 http://marc.info/?l=openbsd-ports&m=141202539713097&w=2
 
+UPDATE #3 2014-09-30: qbit's port has been imported to the OpenBSD ports tree.  \o/ - this means this whole writeup will be unnecessary once everyone can use the port or the package.  I will update this README to bring it up to date with the last patch but overall this writeup is now deprecated other than the starter helper script. :-)  Big thanks to dc740 and qbit!
 ####Preliminary step
 
 First, a preliminary step common to running java apps on OpenBSD -- the ulimit
@@ -56,24 +57,11 @@ then you might need to edit /etc/login.conf and change the 'staff' datasize-cur
 to 1024M or 2048M, otherwise the Minecraft.jar file won't run.  See man
 login.conf.
 
-####Warning
-
-STUPID SYMLINK HACK LIES AHEAD IN STEP 8. I know, I know.  I am not smart
-enough to figure out another way to get Minecraft.jar to find the libGL in
-/usr/X11R6/lib so if you have a better way, please let me know so I can get rid
-of the symlink. Try skipping this step to see the error message and maybe you
-can let me know a better way.  Thanks.
-
-UPDATE 2014-09-29:  See Issue #1
-(https://github.com/chessgriffin/obsd-minecraft/issues/1) where dc740
-contributed a fix for the stupid symlink.  I'll work up a patch as soon as I
-can.
-
-####The 10 easy steps
+####The 9 easy steps
 
 Step 1. As root, install these necessary packages:
 
-   * audio/openal (for the game)
+   * audio/openal (to build lwjgl and for the game)
    * devel/jdk-1.7.0 (to build lwjgl and for the game)
    * java/apache-ant (to build lwjgl)
 
@@ -108,8 +96,10 @@ platform_build/bsd_ant/build.xml.
 ```
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/patch-build_xml
     $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/patch-platform_build_bsd_ant_build_xml
+    $ ftp https://raw.github.com/chessgriffin/obsd-minecraft/master/patch-src_native_linux_opengl_extgl_glx_c
     $ patch build.xml < patch-build_xml
     $ patch platform_build/bsd_ant/build.xml < patch-platform_build_bsd_ant_build_xml
+    $ patch src/native/linux/opengl/extgl_glx.c < patch-src_native_linux_opengl_extgl_glx_c
 ```
 
 Step 6. Build lwjgl.
@@ -139,23 +129,7 @@ lwjgl in your $HOME directory.  If you used the 'workdir' name suggested in
 Step 3, then you probably don't need to edit the script at all but check it out
 just in case.
 
-Step 8. STUPID HACK - link /usr/X11R6/lib/libGL.so.15.0 to
-/usr/lib/libGL.so.1 because otherwise the game won't run.  I tried adding
-the path /usr/X11R6/lib to the -Djava.library.path variable in the
-native-lwjgl.sh script but it does not seem to work.  Please let me know if you
-know how to properly address this issue so I can get rid of this stupid
-symlink.
-
-```
-    (su to root or use sudo)
-    # ln -sf /usr/X11R6/lib/libGL.so.15.0 /usr/lib/libGL.so.1
-    (change back to regular user)
-```
-
-UPDATE: As mentioned above, see Issue #1 for a fix to the stupid symlink
-contributed by dc740.
-
-Step 9. Launch the Minecraft.jar
+Step 8. Launch the Minecraft.jar
 
 ```
     $ java -jar Minecraft.jar
@@ -166,7 +140,7 @@ libraries etc., click "Edit Profile" and click the box labeled "Executable".
 Enter the path to the 'native-lwjgl.sh' script from Step 7.  Then click "Save
 Profile" and then "Play."
 
-Step 10.  Enjoy playing Minecraft on OpenBSD.
+Step 9.  Enjoy playing Minecraft on OpenBSD.
 
 Please let me know if this works or doesn't work or if you have any suggestions
 on how to improve this writeup.  Thank you!
